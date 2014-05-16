@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wesley's Professional Profile">
+    <meta name="author" content="Wesley">
+    <link rel="shortcut icon" href="">
+
+    <title>Login Screen</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="assets/css/main.css" >
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true" >
+      <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onClick="onClose();">×</button>
+              <h1 class="text-center">Login</h1>
+          </div>
+          <div class="modal-body">
+              <form class="form col-md-12 center-block" action="javascript:void(0);">
+                <div class="form-group">
+                </div>
+                <div class="form-group">
+                  <input name="name" id="name" type="text" class="form-control input-lg" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <input name="password" id="password" type="password" class="form-control input-lg" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-primary btn-lg btn-block" onClick="onLogin();">Sign In</button>
+                  <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>
+
+                </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <div class="col-md-12">
+              <button onClick="onClose();" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+
+          </div>
+          </div>
+      </div>
+      </div>
+    </div>
+
+		<input name="onLogin" id="onLogin" type="hidden" value="0" />
+		<input name="onClose" id="onClose" type="hidden" value="0" />
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="assets/lib/jquery/jquery-1.10.2.min.js"></script>
+    <!-- Core Controllers -->
+    <script type="text/javascript">
+
+      function onClose() {
+        $("#onClose").val("1");
+      }
+      function onLogin() {
+        $("#onLogin").val("1");
+      }
+
+    </script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    <script type="text/javascript" src="assets/js/controllers.js"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <!--
+    <script type="text/javascript" src="assets/js/hover.zoom.js"></script>
+    <script type="text/javascript" src="assets/js/hover.zoom.conf.js"></script>
+    -->
+  </body>
+</html>

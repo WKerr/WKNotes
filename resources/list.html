@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wesley's Professional Profile">
+    <meta name="author" content="Wesley">
+    <link rel="shortcut icon" href="">
+
+    <title>Personal Note Tracker</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <!-- Custom styles for this template -->
+    <!--<link rel="stylesheet" href="assets/css/main.css" >-->
+    <style> .row { padding-right:0px; }</style>
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+    <body data-ng-app="" data-spy="scroll" data-offset="0" data-target="#navbar-main">
+
+  	<div id="navbar-main">
+      <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon icon-shield" style="font-size:30px; color:#3498db;"></span>
+          </button>
+          <a class="navbar-brand hidden-xs hidden-sm" href="#home"><span class="icon icon-shield" style="font-size:18px; color:#3498db;"></span></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#home" class="smoothScroll">Home</a></li>
+			<li> <a href="#about" class="smoothScroll"> About</a></li>
+			<li> <a href="#services" class="smoothScroll"> Services</a></li>
+			<li> <a href="#team" class="smoothScroll"> Team</a></li>
+			<li> <a href="#portfolio" class="smoothScroll"> Portfolio</a></li>
+			<li> <a href="#blog" class="smoothScroll"> Blog</a></li>
+			<li> <a href="#contact" class="smoothScroll"> Contact</a></li>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    </div>
+
+  <div class="row" style="margin-top:50px;">
+    <div class="col-md-6" id="WindowAddEditNote">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onClick="onClose();">×</button>
+            <span class="glyphicon glyphicon-book"></span>
+            <span class="panel-title-text">&nbsp;Notes List</span>
+          </h3>
+        </div>
+        <div class="panel-body" data-ng-controller="listController">
+					<table class="table">
+						<tr>
+							<th>id</th>
+							<th>Title</th>
+							<th>Description</th>
+							<th>Status</th>
+							<th>DateTime</th>
+						</tr>
+						<tr data-ng-repeat="note in noteList" class="viewNote" data-note-id="{{note.id}}"> <!-- data-ng-click="id = {{note.id}}" -->
+							<td>{{note.id}}</td>
+							<td>{{note.title}}</td>
+							<td>{{note.description}}</td>
+							<td>{{note.status}}</td>
+							<td>{{note.sDateTime}} - {{note.eDateTime}}</td>
+						</tr>
+					</table>
+
+					<input name="onEditNote" id="onEditNote" type="hidden" value="0" />
+
+        </div>
+        <div class="modal-footer row">
+					<div class="col-xs-2">
+						<button onClick="onAddNote();" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Add Note</button>
+					</div>
+					<div class="col-xs-2">
+						<button onClick="onClose();" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+					</div>
+					<div class="col-xs-2" id="ConsoleNotes">
+					</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+		<input name="noteID" id="noteID" type="hidden" value="0" />
+    <input name="onAddNote" id="onAddNote" type="hidden" value="0" />
+    <input name="onClose" id="onClose" type="hidden" value="0" />
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="assets/lib/jquery/jquery-1.10.2.min.js"></script>
+		<!-- Angular -->
+		<script type="text/javascript" src="assets/lib/angular/angular.min.js"></script>
+    <!-- Core Controllers -->
+    <script type="text/javascript">
+
+      function onClose() {
+        $("#onClose").val("1");
+      }
+      function onAddNote() {
+        $("#onAddNote").val("1");
+      }
+
+			$("body").on("click",".viewNote",function () {
+				$("#onEditNote").val($(this).attr("data-note-id"));
+			});
+
+    </script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    <script type="text/javascript">
+      //var listController = angular.module('listController', []);
+      //listController.controller('listCtrl', ['$scope',
+
+        function listController($scope) {
+        //function ($scope) {
+
+          $scope.noteList =[
+             %noteList%
+          ];
+					$scope.id = 0;
+          // {"showID":1,"code":"abc","name":"bob","date":"Monday"}
+          // REPLACE SHOWLIST WITH THE TABLE VALUES
+
+        }
+      //]);
+
+    </script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <!--
+    <script type="text/javascript" src="assets/js/hover.zoom.js"></script>
+    <script type="text/javascript" src="assets/js/hover.zoom.conf.js"></script>
+    -->
+  </body>
+</html>

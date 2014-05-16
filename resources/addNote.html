@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wesley's Professional Profile">
+    <meta name="author" content="Wesley">
+    <link rel="shortcut icon" href="">
+
+    <title>Personal Note Tracker</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <!-- Custom styles for this template -->
+    <!--<link rel="stylesheet" href="assets/css/main.css" >-->
+		<style> .row { padding-right:0px; }</style>
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+	<div class="row">
+		<div class="col-md-6" id="WindowAddEditNote">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onClick="onClose();">×</button>
+						<span class="glyphicon glyphicon-book"></span>
+						<span class="panel-title-text">&nbsp;Add Notes</span>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<form id="form-note" >
+						<input type='hidden' name='id' id='id' value=''/>
+						<input type='hidden' name='mode' id="mode" value='add'/>
+						<input type='hidden' name='logID' id="logID" value=''/>
+
+						<div id='completionNote-control' class="form-group">
+							<label  class='control-label' for="completionNote">Title:</label>
+							<div class="control-input">
+								<input name='completionNote' id='completionNote' type="text" class="form-control" tabindex='5'/>
+								<span class="help-block">
+									<span id="completionNoteError"></span>
+								</span>
+							</div>
+						</div>
+
+						<div id='whoInvolved-control' class="form-group">
+							<label class='control-label' for="whoInvolved">Status:</label>
+							<div class="control-input">
+								<input name='whoInvolved' id='whoInvolved' type="text" class="form-control" tabindex='3'/>
+								<span class="help-block">
+									<span id="whoInvolvedError"></span>
+								</span>
+							</div>
+						</div>
+
+						<div id='requestNote-control' class="form-group">
+							<label class='control-label' for="requestNote">Description:</label>
+							<div class="control-input">
+								<input name='requestNote' id='requestNote' type="text" class="form-control" tabindex='4'/>
+								<span class="help-block">
+									<span id="requestNoteError"></span>
+								</span>
+							</div>
+						</div>
+
+
+						<div class="row">
+
+							<div class="form-group">
+
+								<div id='dateAdded-control' class="col-md-6 col-sm-6 col-xs-12">
+									<label class='control-label' for="dateAdded">Added Date:</label>
+									<div class="control-input">
+										<div class="input-group input-append date" id="datetimepicker1">
+											<input name='dateAdded' id='dateAdded' data-format="yyyy-MM-dd hh:mm:ss" type="text" class="form-control" autofocus tabindex='1'/>
+											<span class="input-group-addon add-on">
+												<i data-time-icon="icon-time" data-date-icon="icon-calendar"><span class="glyphicon glyphicon-calendar"	></span></i>
+											</span>
+										</div>
+									</div>
+									<span class="help-block">
+										<span id="dateAddedError"></span>
+									</span>
+								</div>
+
+								<div id='dateCompleted-control' class="col-md-6 col-sm-6 col-xs-12">
+									<label class='control-label' for="dateCompleted">Completed Date:</label>
+									<div class="control-input">
+										<div class="input-group input-append date" id="datetimepicker2">
+											<input name='dateCompleted' id='dateCompleted' data-format="yyyy-MM-dd hh:mm:ss" type="text" class="form-control" tabindex='2'/>
+											<span class="input-group-addon add-on">
+												<i data-time-icon="icon-time" data-date-icon="icon-calendar"> <span class="glyphicon glyphicon-calendar"></span> </i>
+											</span>
+										</div>
+										<span class="help-block">
+											<span id="dateCompletedError"></span>
+										</span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+
+						<button onClick="onAddNote();" class="btn btn-lrg btn-primary btn-block" id="btnAddNote" type="button">Add</button>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<div class="col-md-12">
+						<button onClick="onClose();" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          </div>
+			</div>
+		</div>
+
+		<input name="onAddNote" id="onAddNote" type="hidden" value="0" />
+		<input name="onClose" id="onClose" type="hidden" value="0" />
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="assets/lib/jquery/jquery-1.10.2.min.js"></script>
+    <!-- Core Controllers -->
+    <script type="text/javascript">
+
+      function onClose() {
+        $("#onClose").val("1");
+      }
+      function onAddNote() {
+        $("#onAddNote").val("1");
+      }
+
+    </script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    <script type="text/javascript" src="assets/js/controllers.js"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <!--
+    <script type="text/javascript" src="assets/js/hover.zoom.js"></script>
+    <script type="text/javascript" src="assets/js/hover.zoom.conf.js"></script>
+    -->
+  </body>
+</html>

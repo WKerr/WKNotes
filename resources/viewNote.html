@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wesley's Professional Profile">
+    <meta name="author" content="Wesley">
+    <link rel="shortcut icon" href="">
+
+    <title>Personal Note Tracker</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <!-- Custom styles for this template -->
+    <!--<link rel="stylesheet" href="assets/css/main.css" >-->
+		<style> .row { padding-right:0px; }</style>
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body data-ng-app="" data-ng-controller="listController">
+
+	<div class="row">
+		<div class="col-md-6" id="WindowAddEditNote">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onClick="onClose();">×</button>
+						<span class="glyphicon glyphicon-book"></span>
+						<span class="panel-title-text">&nbsp;{{note.title}} - {{note.status}} - {{note.sDateTime}}</span>
+					</h3>
+				</div>
+				<div class="panel-body" >
+					<h3 id="noteDescription">{{note.description}}</h3>
+					<div class="form-group">
+						<textarea class="form-control" rows="15" id="noteText"> {{note.text}} </textarea>
+					</div>
+				</div>
+				<div class="modal-footer row">
+					<div class="col-xs-2">
+						<button onClick="onAddNote();" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Save Note</button>
+					</div>
+					<div class="col-xs-10">
+						<button onClick="onClose();" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+					</div>
+			</div>
+		</div>
+		<input name="noteID" id="noteID" type="hidden" value="{{note.id}}" />
+		<input name="onAddNote" id="onAddNote" type="hidden" value="0" />
+		<input name="onClose" id="onClose" type="hidden" value="0" />
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="assets/lib/jquery/jquery-1.10.2.min.js"></script>
+		<!-- Angular -->
+		<script type="text/javascript" src="assets/lib/angular/angular.min.js"></script>
+    <!-- Core Controllers -->
+    <script type="text/javascript">
+
+      function onClose() {
+        $("#onClose").val("1");
+      }
+      function onAddNote() {
+        $("#onAddNote").val("1");
+      }
+
+    </script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
+    <script type="text/javascript">
+      //var listController = angular.module('listController', []);
+
+      //listController.controller('listCtrl', ['$scope',
+
+        function listController($scope ) {
+        //function ($scope) {
+
+          $scope.note= %noteInfo%;//{ "title":"USCE2014","description":"what?"}
+          // {"showID":1,"code":"abc","name":"bob","date":"Monday"}
+          // REPLACE SHOWLIST WITH THE TABLE VALUES
+
+        }
+      //]);
+
+    </script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <!--
+    <script type="text/javascript" src="assets/js/hover.zoom.js"></script>
+    <script type="text/javascript" src="assets/js/hover.zoom.conf.js"></script>
+    -->
+  </body>
+</html>
