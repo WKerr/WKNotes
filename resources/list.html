@@ -69,7 +69,7 @@
 							<th>Status</th>
 							<th>DateTime</th>
 						</tr>
-						<tr data-ng-repeat="note in noteList" class="viewNote" data-note-id="{{note.id}}"> <!-- data-ng-click="id = {{note.id}}" -->
+						<tr data-ng-repeat="note in noteList" class="viewNote" data-ng-class="{P:'danger',C:'active', '':''}[note.status]" data-note-id="{{note.id}}"> <!-- data-ng-click="id = {{note.id}}" -->
 							<td>{{note.id}}</td>
 							<td>{{note.title}}</td>
 							<td>{{note.description}}</td>

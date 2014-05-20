@@ -164,8 +164,11 @@ Func HTML_addNote($oIE, ByRef $guiCurrent)
 		ConsoleWrite("onAddNote ==> Pressed" &@CRLF)
 
 		;local $updateID = int(getIdValue($oIE,"noteID"))
-		local $valueTitle = getIdValue($oIE,"completionNote")
-		local $valueDescription = getIdValue($oIE,"requestNote")
+		local $valueTitle = getIdValue($oIE,"title")
+		local $valueDescription = getIdValue($oIE,"description")
+		local $valueStatus = getIdValue($oIE,"status")
+		local $valueDateAdded = getIdValue($oIE,"dateAdded")
+		local $valueDateCompleted = getIdValue($oIE,"dateCompleted")
 
 		local $hNoteDb = _SQLite_Open("wknotes.db") ; Creates a database
 		_SQLite_Exec($hNoteDb, "INSERT INTO notes (title,description,status,sDateTime) VALUES ('"&$valueTitle&"','"&$valueDescription&"','P',datetime('now'));") ; the query
