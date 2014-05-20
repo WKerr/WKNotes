@@ -26,31 +26,34 @@
 
   <body data-ng-app="" data-ng-controller="listController">
 
-	<div class="row">
-		<div class="col-md-6" id="WindowAddEditNote">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onClick="onClose();">×</button>
-						<span class="glyphicon glyphicon-book"></span>
-						<span class="panel-title-text">&nbsp;{{note.title}} - {{note.status}} - {{note.sDateTime}}</span>
-					</h3>
-				</div>
-				<div class="panel-body" >
-					<h3 id="noteDescription">{{note.description}}</h3>
-					<div class="form-group">
-						<textarea class="form-control" rows="15" id="noteText"> {{note.text}} </textarea>
-					</div>
-				</div>
-				<div class="modal-footer row">
-					<div class="col-xs-2">
-						<button onClick="onAddNote();" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Save Note</button>
-					</div>
-					<div class="col-xs-10">
-						<button onClick="onClose();" class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-					</div>
-			</div>
-		</div>
+    <div class="row">
+  		<div class="col-md-12" id="WindowAddEditNote">
+  			<div class="panel panel-primary">
+  				<div class="panel-heading">
+  					<h3 class="panel-title">
+  						<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onClick="onClose();">×</button>
+  						<span class="glyphicon glyphicon-book"></span>
+  						<span class="panel-title-text">&nbsp;{{note.title}} - {{note.status}} - {{note.sDateTime}}</span>
+  					</h3>
+  				</div>
+  				<div class="panel-body" >
+  					<h3 id="noteDescription">{{note.description}}</h3>
+  					<div class="form-group">
+  						<textarea class="form-control" rows="15" id="noteText"> {{note.text}} </textarea>
+  					</div>
+  				</div>
+  				<div class="modal-footer row">
+  					<div class="col-xs-2">
+  						<button onClick="onAddNote();" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Save Note</button>
+  					</div>
+  					<div class="col-xs-10">
+  						<button onClick="onClose();" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+  					</div>
+          </div>
+  		  </div> <!-- panel-primary -->
+      </div> <!-- col-md-12 -->
+    </div> <!-- row -->
+
 		<input name="noteID" id="noteID" type="hidden" value="{{note.id}}" />
 		<input name="onAddNote" id="onAddNote" type="hidden" value="0" />
 		<input name="onClose" id="onClose" type="hidden" value="0" />
