@@ -97,7 +97,6 @@ Func HTML_viewNote($oIE, ByRef $guiCurrent, ByRef $noteID)
 
 	; Initiallization
 	if (not $htmlInit) Then
-
 		ConsoleWrite("NoteID ==> " & $noteID)
 
 		local $noteJSON = ""
@@ -168,7 +167,7 @@ Func HTML_addNote($oIE, ByRef $guiCurrent)
 		local $valueDescription = getIdValue($oIE,"requestNote")
 
 		local $hNoteDb = _SQLite_Open("wknotes.db") ; Creates a database
-		_SQLite_Exec($hNoteDb, "INSERT INTO notes (title,description) VALUES ('"&$valueTitle&"','"&$valueDescription&"');") ; the query
+		_SQLite_Exec($hNoteDb, "INSERT INTO notes (title,description,status,sDateTime) VALUES ('"&$valueTitle&"','"&$valueDescription&"','P',datetime('now'));") ; the query
 		_SQLite_Close($hNoteDb)
 
 		$htmlInit = False
@@ -267,10 +266,12 @@ Func HTML_Login($oIE, ByRef $guiCurrent)
 
 EndFunc
 
+;Simplified message alert box
 Func alert($msg)
 	MsgBox(48,"Alert",$msg)
 EndFunc
 
+;Internal functions to get the current html page.
 Func getCurrentPage($oIE)
 	return StringRegExpReplace(_IEPropertyGet($oIE, "locationurl"),"^.*\/","")
 EndFunc
