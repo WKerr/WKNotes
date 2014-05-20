@@ -62,6 +62,7 @@ guiEventLoop($oIE)
 Func guiEventLoop($oIE)
 
 	__sqliteConnect()
+	 _startUp()
 
 	;PASS BY REFERENCE VARIABLES
 	local $guiCurrent = "list.html"
@@ -302,9 +303,21 @@ EndFunc
 Func __sqliteOpen()
 	$hNoteDb = _SQLite_Open("wknotes.db") ; Open a database
 	If @error Then
-			MsgBox(16, "SQLite Error", "Can't link to database!")
-			Exit -1
+		MsgBox(16, "SQLite Error", "Can't link to database!")
+		Exit -1
 	EndIf
+	return $hNoteDb
+EndFunc
+
+Func _startUp()
+
+	;check if db exists... if not create a new one.
+	if not FileExists("wknotes.db") then
+		local $hNoteDb = __sqliteOpen()
+		_SQLite_Exec($hNoteDb, "CREATE TABLE notes IF NOT EXISTS (text TEXT, id INTEGER PRIMARY KEY, title CHAR(50), description CHAR(50), status CHAR(5), sDateTime datetime, eDateTime datetime);")
+		_SQLite_Close($hNoteDb)
+	EndIf
+
 EndFunc
 
 Func CleanUp()

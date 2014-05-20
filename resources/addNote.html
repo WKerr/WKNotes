@@ -42,32 +42,32 @@
 						<input type='hidden' name='mode' id="mode" value='add'/>
 						<input type='hidden' name='logID' id="logID" value=''/>
 
-						<div id='completionNote-control' class="form-group">
-							<label  class='control-label' for="completionNote">Title:</label>
+						<div id='title-control' class="form-group">
+							<label  class='control-label' for="title">Title:</label>
 							<div class="control-input">
-								<input name='completionNote' id='completionNote' type="text" class="form-control" tabindex='1'/>
+								<input name='title' id='title' type="text" class="form-control" tabindex='1' autofocus/>
 								<span class="help-block">
-									<span id="completionNoteError"></span>
+									<span id="titleError"></span>
 								</span>
 							</div>
 						</div>
 
-						<div id='whoInvolved-control' class="form-group">
-							<label class='control-label' for="whoInvolved">Status:</label>
+						<div id='status-control' class="form-group">
+							<label class='control-label' for="status">Status:</label>
 							<div class="control-input">
-								<input name='whoInvolved' id='whoInvolved' type="text" class="form-control" tabindex='2'/>
+								<input name='status' id='status' type="text" class="form-control" tabindex='2'/>
 								<span class="help-block">
-									<span id="whoInvolvedError"></span>
+									<span id="statusError"></span>
 								</span>
 							</div>
 						</div>
 
-						<div id='requestNote-control' class="form-group">
-							<label class='control-label' for="requestNote">Description:</label>
+						<div id='description-control' class="form-group">
+							<label class='control-label' for="description">Description:</label>
 							<div class="control-input">
-								<input name='requestNote' id='requestNote' type="text" class="form-control" tabindex='3'/>
+								<input name='description' id='description' type="text" class="form-control" tabindex='3'/>
 								<span class="help-block">
-									<span id="requestNoteError"></span>
+									<span id="descriptionError"></span>
 								</span>
 							</div>
 						</div>
@@ -81,7 +81,7 @@
 									<label class='control-label' for="dateAdded">Added Date:</label>
 									<div class="control-input">
 										<div class="input-group input-append date" id="datetimepicker1">
-											<input name='dateAdded' id='dateAdded' data-format="yyyy-MM-dd hh:mm:ss" type="text" class="form-control" autofocus tabindex='4'/>
+											<input name='dateAdded' id='dateAdded' data-format="yyyy-MM-dd hh:mm:ss" type="text" class="form-control" tabindex='4'/>
 											<span class="input-group-addon add-on">
 												<i data-time-icon="icon-time" data-date-icon="icon-calendar"><span class="glyphicon glyphicon-calendar"	></span></i>
 											</span>
