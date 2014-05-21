@@ -56,9 +56,11 @@ _IENavigate($oIE, @ScriptDir&"\resources\index.html")
 OnAutoItExitRegister ( "CleanUp" )
 
 
-
+; Global variable that determines if it is first time page load.
 local $htmlInit = False
 guiEventLoop($oIE)
+
+
 Func guiEventLoop($oIE)
 
 	__sqliteConnect()
@@ -136,8 +138,8 @@ Func HTML_viewNote($oIE, ByRef $guiCurrent, ByRef $noteID)
 		local $ObjText = _IEGetObjById($oIE,"noteText")
 		local $updateText = _IEPropertyGet($ObjText,"innertext")
 		ConsoleWrite($updateText &@CRLF)
-		;$updateText = _HTMLEncode($updateText)
-		;ConsoleWrite($updateText &@CRLF)
+		$updateText = _HTMLEncode($updateText)
+		ConsoleWrite($updateText &@CRLF)
 
 		$hNoteDb = _SQLite_Open("wknotes.db") ; Creates a database
 		_SQLite_Exec($hNoteDb, "UPDATE notes SET text='"&$updateText&"' WHERE id = "&$updateID&";") ; the query
@@ -208,7 +210,7 @@ Func HTML_List($oIE, ByRef $guiCurrent ,ByRef $noteID)
 		_SQLite_Query($hNoteDb, "SELECT * FROM notes ORDER BY id;", $hQuery) ; the query
 		While _SQLite_FetchData($hQuery, $rs, False, False) = $SQLITE_OK ; Read Out the next Row
 			if $noteJSON <> "" then $noteJSON = $noteJSON & ','
-			$noteJSON = $noteJSON & ' {"id":'&$rs[1]&', "title": "'&$rs[2]&'", "description": "'&$rs[3]&'", "status":"'&$rs[4]&'","sDateTime":"'&$rs[5]&'","eDateTime":"'&$rs[6]&'"}'
+			$noteJSON = $noteJSON & ' {"text":"'&$rs[0]&'","id":'&$rs[1]&', "title": "'&$rs[2]&'", "description": "'&$rs[3]&'", "status":"'&$rs[4]&'","sDateTime":"'&$rs[5]&'","eDateTime":"'&$rs[6]&'"}'
 		WEnd
 		_SQLite_Close($hNoteDb)
 
