@@ -1,4 +1,5 @@
 ;gui_embedded.au3
+#include <includes/HTML.au3>
 
 #include <GUIConstantsEx.au3>
 #include <WindowsConstants.au3>
@@ -24,10 +25,9 @@ EndIf
 #ce
 Local $oIE = _IECreateEmbedded()
 local Const $GUIHEIGHT = 580
-local Const $GUIWIDTH =  640
+local Const $GUIWIDTH =  730
 GUICreate("Personal Note Tracker", $GUIWIDTH, $GUIHEIGHT, _
-      (@DesktopWidth - $GUIWIDTH) / 2,  (@DesktopHeight - $GUIHEIGHT) / 2, _
-           $WS_VISIBLE )
+      (@DesktopWidth - $GUIWIDTH) / 2,  (@DesktopHeight - $GUIHEIGHT) / 2, $WS_SIZEBOX )
 ; $WS_VISIBLE --> Createa window that is initially visible.
 ; $WS_OVERLAPPEDWINDOW --> Creates an overlapped window with the WS_OVERLAPPED, WS_CAPTION, WS_SYSMENU, WS_THICKFRAME, WS_MINIMIZEBOX, and WS_MAXIMIZEBOX styles. Same as the WS_TILEDWINDOW style.
 ; $WS_CLIPSIBLINGS -->
@@ -37,8 +37,8 @@ GUICtrlCreateObj($oIE, 0, 0, $GUIWIDTH , $GUIHEIGHT)
 GUICtrlSetResizing(-1,1)
 GUISetState() ;Show GUI
 
+;Not using it properly... Can probably be removed.
 Local $oDictionary = ObjCreate("Scripting.Dictionary")
-
     ; Add keys with items
     $oDictionary.ADD("main", "list.html")
     $oDictionary.ADD("login", "login.html")
@@ -101,12 +101,14 @@ Func HTML_viewNote($oIE, ByRef $guiCurrent, ByRef $noteID)
 		ConsoleWrite("NoteID ==> " & $noteID)
 
 		local $noteJSON = ""
+		local $noteText = ""
 		local $hQuery,$rs
 		local $hNoteDb = _SQLite_Open("wknotes.db") ; Creates a database
 		_SQLite_Query($hNoteDb, "SELECT * FROM notes WHERE id = "&$noteID&";", $hQuery) ; the query
 		While _SQLite_FetchData($hQuery, $rs, False, False) = $SQLITE_OK ; Read Out the next Row
 			if $noteJSON <> "" then $noteJSON = $noteJSON & ','
-			$noteJSON = $noteJSON & ' {"text":"'&$rs[0]&'","id":'&$rs[1]&', "title": "'&$rs[2]&'", "description": "'&$rs[3]&'", "status":"'&$rs[4]&'","sDateTime":"'&$rs[5]&'","eDateTime":"'&$rs[6]&'"}'
+			$noteText = $rs[0]
+			$noteJSON = $noteJSON & ' {"id":'&$rs[1]&', "title": "'&$rs[2]&'", "description": "'&$rs[3]&'", "status":"'&$rs[4]&'","sDateTime":"'&$rs[5]&'","eDateTime":"'&$rs[6]&'"}'
 		WEnd
 		_SQLite_Close($hNoteDb)
 
@@ -117,6 +119,7 @@ Func HTML_viewNote($oIE, ByRef $guiCurrent, ByRef $noteID)
 
 		; Inject out enhanced script into the html
 		$htm=StringReplace($htm,'%noteInfo%',$noteJSON)
+		$htm=StringReplace($htm,'%note.text%',$noteText)
 
 		; write the html and js as a unit
 		_IEDocWriteHTML($oIE,$htm)
@@ -133,6 +136,8 @@ Func HTML_viewNote($oIE, ByRef $guiCurrent, ByRef $noteID)
 		local $ObjText = _IEGetObjById($oIE,"noteText")
 		local $updateText = _IEPropertyGet($ObjText,"innertext")
 		ConsoleWrite($updateText &@CRLF)
+		;$updateText = _HTMLEncode($updateText)
+		;ConsoleWrite($updateText &@CRLF)
 
 		$hNoteDb = _SQLite_Open("wknotes.db") ; Creates a database
 		_SQLite_Exec($hNoteDb, "UPDATE notes SET text='"&$updateText&"' WHERE id = "&$updateID&";") ; the query
@@ -203,7 +208,7 @@ Func HTML_List($oIE, ByRef $guiCurrent ,ByRef $noteID)
 		_SQLite_Query($hNoteDb, "SELECT * FROM notes ORDER BY id;", $hQuery) ; the query
 		While _SQLite_FetchData($hQuery, $rs, False, False) = $SQLITE_OK ; Read Out the next Row
 			if $noteJSON <> "" then $noteJSON = $noteJSON & ','
-			$noteJSON = $noteJSON & ' {"text":"'&$rs[0]&'","id":'&$rs[1]&', "title": "'&$rs[2]&'", "description": "'&$rs[3]&'", "status":"'&$rs[4]&'","sDateTime":"'&$rs[5]&'","eDateTime":"'&$rs[6]&'"}'
+			$noteJSON = $noteJSON & ' {"id":'&$rs[1]&', "title": "'&$rs[2]&'", "description": "'&$rs[3]&'", "status":"'&$rs[4]&'","sDateTime":"'&$rs[5]&'","eDateTime":"'&$rs[6]&'"}'
 		WEnd
 		_SQLite_Close($hNoteDb)
 

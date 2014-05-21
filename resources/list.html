@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <!-- Custom styles for this template -->
     <!--<link rel="stylesheet" href="assets/css/main.css" >-->
-    <style> .row { padding-right:0px; }</style>
+    <style> #WindowNote { padding-right:0px; } </style>
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -24,9 +24,9 @@
     <![endif]-->
   </head>
 
-    <body data-ng-app="" data-spy="scroll" data-offset="0" data-target="#navbar-main">
+  <body data-ng-app="" data-spy="scroll" data-offset="0" data-target="#navbar-main">
 
-  	<div id="navbar-main">
+  <div id="navbar-main">
       <!-- Fixed navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -39,19 +39,20 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="#home" class="smoothScroll">Home</a></li>
-			<li> <a href="#about" class="smoothScroll"> About</a></li>
-			<li> <a href="#services" class="smoothScroll"> Services</a></li>
-			<li> <a href="#team" class="smoothScroll"> Team</a></li>
-			<li> <a href="#portfolio" class="smoothScroll"> Portfolio</a></li>
-			<li> <a href="#blog" class="smoothScroll"> Blog</a></li>
-			<li> <a href="#contact" class="smoothScroll"> Contact</a></li>
+      			<li> <a href="#about" class="smoothScroll"> About</a></li>
+      			<li> <a href="#services" class="smoothScroll"> Services</a></li>
+      			<li> <a href="#team" class="smoothScroll"> Team</a></li>
+      			<li> <a href="#portfolio" class="smoothScroll"> Portfolio</a></li>
+      			<li> <a href="#blog" class="smoothScroll"> Blog</a></li>
+      			<li> <a href="#contact" class="smoothScroll"> Contact</a></li>
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
-    </div>
+  </div>
 
   <div class="row" style="margin-top:50px;">
-    <div class="col-md-6" id="WindowAddEditNote">
+    <div class="col-md-6" id="WindowNote">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">
@@ -79,17 +80,18 @@
 					</table>
 
 					<input name="onEditNote" id="onEditNote" type="hidden" value="0" />
+        
+          <div class="row">
+  					<div class="col-xs-2">
+  						<button onClick="onAddNote();" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Add Note</button>
+  					</div>
+  					<div class="col-xs-2">
+  						<button onClick="onClose();" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+  					</div>
+  					<div class="col-xs-2" id="ConsoleNotes">
+  					</div>
+          </div>
 
-        </div>
-        <div class="modal-footer row">
-					<div class="col-xs-2">
-						<button onClick="onAddNote();" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Add Note</button>
-					</div>
-					<div class="col-xs-2">
-						<button onClick="onClose();" class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
-					</div>
-					<div class="col-xs-2" id="ConsoleNotes">
-					</div>
         </div>
       </div>
     </div>
